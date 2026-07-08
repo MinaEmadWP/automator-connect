@@ -1,0 +1,262 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Automator Connect\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-08 21:57+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.8.5; wp-7.0; php-8.2.30\n"
+"X-Domain: automator-connect"
+
+#: src/integrations/cloudways/actions/cloudways-get-operation-status.php:169
+msgid "App ID"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-get-operation-status.php:173
+msgid "App Label"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-create-app-backup.php:85
+#: src/integrations/cloudways/actions/cloudways-remove-app.php:85
+msgid "Application"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-add-app.php:104
+msgid "Application name"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-add-app.php:112
+msgid "Application type"
+msgstr ""
+
+#. Name of the plugin
+msgid "Automator Connect"
+msgstr ""
+
+#: src/integrations/cloudways/settings/cloudways-settings.php:166
+msgid "Cloudways Account connected successfully"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-create-app-backup.php:178
+#: src/integrations/cloudways/actions/cloudways-get-operation-status.php:262
+#: src/integrations/cloudways/actions/cloudways-remove-app.php:177
+msgid "Cloudways API caller dependency is missing."
+msgstr ""
+
+#: src/integrations/cloudways/settings/cloudways-settings.php:217
+msgid "Cloudways API key"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-create-app-backup.php:134
+#: src/integrations/cloudways/actions/cloudways-remove-app.php:134
+msgid "Cloudways application is missing."
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-add-app.php:169
+msgid "Cloudways application name is missing."
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-add-app.php:173
+msgid "Cloudways application type is missing."
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-create-app-backup.php:151
+#: src/integrations/cloudways/actions/cloudways-add-app.php:190
+#: src/integrations/cloudways/actions/cloudways-remove-app.php:150
+msgid "Cloudways did not return an operation ID."
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-get-operation-status.php:223
+msgid "Cloudways did not return any operation data."
+msgstr ""
+
+#: src/integrations/cloudways/settings/cloudways-settings.php:208
+msgid "Cloudways email"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-get-operation-status.php:209
+msgid "Cloudways operation ID is missing."
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-get-operation-status.php:215
+msgid "Cloudways returned an invalid response for the operation status."
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-create-app-backup.php:140
+#: src/integrations/cloudways/actions/cloudways-remove-app.php:140
+msgid "Cloudways server could not be resolved from the selected application."
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-add-app.php:165
+msgid "Cloudways server is missing."
+msgstr ""
+
+#: src/integrations/cloudways/settings/cloudways-settings.php:124
+msgid "Connect Account"
+msgstr ""
+
+#: src/integrations/cloudways/settings/cloudways-settings.php:132
+msgid "Disconnect"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-get-operation-status.php:127
+msgid "Enter the operation ID or use a token"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-get-operation-status.php:149
+msgid "Estimated time remaining"
+msgstr ""
+
+#. Description of the plugin
+msgid "Extends Uncanny Automator with a number of third-party integrations."
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-get-operation-status.php:153
+msgid "Frontend step number"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-get-operation-status.php:108
+msgid "Get the status of a Cloudways operation"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-get-operation-status.php:102
+#, php-format
+msgid "Get the status of Cloudways operation {{operation ID:%1$s}}"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://minaemad.com/"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-get-operation-status.php:161
+msgid "Is completed"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-add-app.php:260
+msgid "Laravel"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-get-operation-status.php:165
+msgid "Message"
+msgstr ""
+
+#. Author of the plugin
+msgid "Mina Emad"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-add-app.php:106
+msgid "My application"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-create-app-backup.php:102
+#: src/integrations/cloudways/actions/cloudways-get-operation-status.php:125
+#: src/integrations/cloudways/actions/cloudways-add-app.php:137
+#: src/integrations/cloudways/actions/cloudways-remove-app.php:102
+msgid "Operation ID"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-get-operation-status.php:141
+msgid "Operation type"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-add-app.php:123
+msgid "Optional"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-add-app.php:256
+msgid "PHP"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-add-app.php:121
+msgid "Project name"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-get-operation-status.php:177
+msgid "Raw operation response"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-add-app.php:98
+msgid "Select a server"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-create-app-backup.php:88
+#: src/integrations/cloudways/actions/cloudways-remove-app.php:88
+msgid "Select An Application"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-add-app.php:115
+msgid "Select an application type"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-add-app.php:95
+msgid "Server"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-get-operation-status.php:145
+msgid "Server ID"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-create-app-backup.php:68
+msgid "Start a Cloudways application backup process"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-create-app-backup.php:62
+#, php-format
+msgid "Start a Cloudways backup for {{application:%1$s}}"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-add-app.php:78
+msgid "Start adding a Cloudways application"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-add-app.php:72
+#, php-format
+msgid "Start adding a Cloudways application on {{server:%1$s}}"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-remove-app.php:68
+msgid "Start removing a Cloudways application"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-remove-app.php:62
+#, php-format
+msgid "Start removing Cloudways application {{application:%1$s}}"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-get-operation-status.php:157
+msgid "Status"
+msgstr ""
+
+#. %s: error message.
+#: src/integrations/cloudways/settings/cloudways-settings.php:154
+#, php-format
+msgid "The provided Cloudways credentials could not be validated. Error: %s"
+msgstr ""
+
+#: src/integrations/cloudways/settings/cloudways-settings.php:151
+msgid "Unable to connect to Cloudways"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-add-app.php:252
+msgid "WooCommerce"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-add-app.php:248
+msgid "WordPress"
+msgstr ""
+
+#: src/integrations/cloudways/settings/cloudways-settings.php:112
+msgid "Your Cloudways account is connected."
+msgstr ""
+
+#: src/integrations/cloudways/settings/cloudways-settings.php:167
+msgid "Your Cloudways credentials have been validated and saved."
+msgstr ""
