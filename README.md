@@ -59,7 +59,7 @@ No. Automator Connect works with the free version of Uncanny Automator.
 
 ### Where do I find my Cloudways API key?
 
-In your [Cloudways account](https://unified.cloudways.com/), go to Account > API Access to generate an API key. You'll need this along with your Cloudways account email to connect the integration. For more information, follow the [step-by-Step getting started guide](https://support.cloudways.com/en/articles/5136065-how-to-use-the-cloudways-api).
+In your [Cloudways account](https://unified.cloudways.com/), go to Account > API Access to generate an API key. You'll need this along with your Cloudways account email to connect the integration. For more information, follow the [step-by-step getting started guide](https://support.cloudways.com/en/articles/5136065-how-to-use-the-cloudways-api).
 
 ### What happens if I disconnect the integration?
 
