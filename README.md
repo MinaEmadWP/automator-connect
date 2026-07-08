@@ -42,7 +42,7 @@ Cloudways operations (like adding an app or starting a backup) run asynchronousl
 
 ## Support
 
-This is an independently maintained plugin, not officially affiliated with Uncanny Automator or Cloudways. Please open an issue on [GitHub](https://github.com/MinaEmadWP/automator-connect) for bugs or feature requests.
+This is an independently maintained plugin, not officially affiliated with WordPress, Uncanny Automator or Cloudways. Please open an issue on [GitHub](https://github.com/MinaEmadWP/automator-connect) for bugs or feature requests.
 
 ## Installation
 
