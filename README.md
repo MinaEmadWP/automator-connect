@@ -1,6 +1,6 @@
 # Automator Connect
 
-**Contributors:** MinaEmadWP \
+**Contributors:** Mina Emad (@MinaEmadWP) \
 **Tags:** uncanny automator, automation, cloudways, integration, workflow \
 **Requires at least:** 5.8 \
 **Tested up to:** 7.0 \
