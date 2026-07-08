@@ -15,7 +15,7 @@ Extends Uncanny Automator with third-party plugin and app integrations.
 
 Automator Connect adds new integrations to [Uncanny Automator](https://automatorplugin.com/), letting you build no-code recipes that manage third-party plugins and  services directly from WordPress.
 
-### Supported apps
+### Supported Apps
 * [Cloudways](https://www.cloudways.com/), a managed cloud hosting platform.
 
 The Automator Connect plugin is under active development; more integrations are planned.
