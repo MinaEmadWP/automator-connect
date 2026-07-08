@@ -1,22 +1,32 @@
 # Automator Connect
-Contributors: minaemad \
-Tags: uncanny automator, automation, cloudways, integration, workflow \
-Requires at least: 5.8 \
-Tested up to: 6.6 \
-Requires PHP: 7.4 \
-Stable tag: 1.0.0 \
-License: GPLv2 or later \
-License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
-Extends Uncanny Automator with third-party integrations.
+**Contributors:** minaemad \
+**Tags:** uncanny automator, automation, cloudways, integration, workflow \
+**Requires at least:** 5.8 \
+**Tested up to:** 7.0 \
+**Requires PHP:** 7.4 \
+**Stable tag:** 1.0.0 \
+**License:** GPLv2 or later \
+**License URI:** https://www.gnu.org/licenses/gpl-3.0.html
+
+Extends Uncanny Automator with third-party plugin and app integrations.
 
 ## Description
 
-Automator Connect adds new integrations to [Uncanny Automator](https://automatorplugin.com/), letting you build no-code recipes that manage third-party services directly from WordPress.
+Automator Connect adds new integrations to [Uncanny Automator](https://automatorplugin.com/), letting you build no-code recipes that manage plugins and third-party services directly from WordPress.
+
+### Supported apps
+* [Cloudways](https://www.cloudways.com/), a managed cloud hosting platform.
+
+The Automator Connect plugin is under active development; more integrations are planned.
+
+## Automation Examples
+
+Here are examples of automations you can create:
 
 ### Cloudways Automation
 
-The first integration is [**Cloudways**](https://www.cloudways.com/), a managed cloud hosting platform. Once connected, your Automator recipes can:
+Once [Cloudways](https://www.cloudways.com/) is connected, your Automator recipes can:
 
 * **Add an application** to a Cloudways server
 * **Remove an application** from a Cloudways server
@@ -24,9 +34,6 @@ The first integration is [**Cloudways**](https://www.cloudways.com/), a managed 
 * **Check the status** of a running Cloudways operation
 
 Cloudways operations (like adding an app or starting a backup) run asynchronously on Cloudways' side. Automator Connect's actions return an operation ID as a token, which you can pass into the "Get the status of a Cloudways operation" action later in the same recipe (or a follow-up recipe) to check whether it finished.
-
-### Supported apps
-This plugin is under active development. Cloudways is the first integration; more are planned.
 
 ## Requirements
 
