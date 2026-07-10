@@ -55,7 +55,7 @@ This is an independently maintained plugin, not officially affiliated with WordP
 
 ### Do I need an Uncanny Automator Pro license?
 
-No. Automator Connect works with the free version of Uncanny Automator.
+No. Automator Connect works with the free version of Uncanny Automator. That said, if you're building out advanced recipes and want to take automation to the next level, [Uncanny Automator's paid plans](https://automatorplugin.com/pricing/) unlock more advanced features and additional integrations with hundreds of triggers and actions.
 
 ### Where do I find my Cloudways API key?
 
