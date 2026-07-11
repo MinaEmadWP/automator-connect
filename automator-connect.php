@@ -42,7 +42,7 @@ if ( ! defined( 'AC_ABSPATH' ) ) {
 	define( 'AC_ABSPATH', dirname( AUTOMATOR_CONNECT_BASE_FILE ) . DIRECTORY_SEPARATOR );
 }
 
-add_action( 'plugins_loaded', 'automator_connect_load_textdomain' );
+add_action( 'init', 'automator_connect_load_textdomain' );
 
 if ( ! function_exists( 'automator_connect_load_textdomain' ) ) {
 
