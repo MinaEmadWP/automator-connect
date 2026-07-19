@@ -437,7 +437,7 @@ class Cloudways_Api_Client {
 	}
 
 	/**
-	 * Determine whether the response code indicates an authentication issue.
+	 * Determine whether the response code likely indicates an authentication issue.
 	 *
 	 * @param int $response_code Response code.
 	 *
