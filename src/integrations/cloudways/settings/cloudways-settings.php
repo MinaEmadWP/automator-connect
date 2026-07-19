@@ -152,7 +152,7 @@ class Cloudways_Settings extends Premium_Integration_Settings {
 					'content' => sprintf(
 						/* translators: %s: error message. */
 						esc_html__( 'The provided Cloudways credentials could not be validated. Error: %s', 'automator-connect' ),
-						esc_html( wp_strip_all_tags( $e->getMessage() ) )
+						esc_html( $e->getMessage() )
 					),
 				)
 			);
