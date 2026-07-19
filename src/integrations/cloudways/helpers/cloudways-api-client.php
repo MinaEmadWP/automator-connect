@@ -414,20 +414,12 @@ class Cloudways_Api_Client {
 	 */
 	private function extract_error_message( array $decoded_body, $raw_body, $default_message = '' ) {
 		foreach ( array( 'error_description', 'message', 'error' ) as $field ) {
-			if ( isset( $decoded_body[ $field ] ) && ! empty( $decoded_body[ $field ] ) && is_string( $decoded_body[ $field ] ) ) {
-				return trim( $decoded_body[ $field ] );
+			if ( ! empty( $decoded_body[ $field ] ) && is_string( $decoded_body[ $field ] ) ) {
+				return wp_strip_all_tags( trim( $decoded_body[ $field ] ) );
 			}
 		}
 
-		if ( ! empty( $decoded_body ) ) {
-			$json = wp_json_encode( $decoded_body );
-
-			if ( is_string( $json ) && '' !== $json ) {
-				return $json;
-			}
-		}
-
-		$raw_body = trim( (string) $raw_body );
+		$raw_body = trim( wp_strip_all_tags( (string) $raw_body ) );
 
 		if ( '' !== $raw_body ) {
 			return $raw_body;
