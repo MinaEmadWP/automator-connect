@@ -54,7 +54,7 @@ class Cloudways_Api_Client {
 	 * Perform a GET request.
 	 *
 	 * @param string $endpoint   Relative API endpoint.
-	 * @param string $path   Optional path parameter.
+	 * @param string $path   	 Optional path parameter.
 	 * @param array  $query_args Optional query arguments.
 	 * @param array  $args       Optional request arguments.
 	 *
@@ -163,12 +163,13 @@ class Cloudways_Api_Client {
 		$query_args = isset( $args['query_args'] ) && is_array( $args['query_args'] ) ? $args['query_args'] : array();
 
 		$url = $this->build_url( $endpoint, $path, $query_args );
-
 		$access_token = $this->get_access_token();
+		$headers = $this->build_headers( $access_token );
+
 		$request_args = $this->build_request_args(
 			$method,
 			$timeout,
-			$this->build_headers( $access_token ),
+			$headers,
 			$body
 		);
 
@@ -190,14 +191,14 @@ class Cloudways_Api_Client {
 
 		$decoded_body = $this->decode_response_body(
 			$response_body,
-			'Cloudways returned an invalid JSON response.'
+			esc_html__('Cloudways returned an invalid JSON response.', 'automator-connect' )
 		);
 
 		if ( $response_code < 200 || $response_code >= 300 ) {
 			$message = $this->extract_error_message(
 				$decoded_body,
 				$response_body,
-				'Cloudways API request failed.'
+				esc_html__('Cloudways API request failed.', 'automator-connect' )
 			);
 
 			throw new Exception( $message, $response_code );
@@ -238,14 +239,14 @@ class Cloudways_Api_Client {
 
 		$decoded_body = $this->decode_response_body(
 			$response_body,
-			'Cloudways returned an invalid JSON response during authentication.'
+			esc_html__('Cloudways returned an invalid JSON response during authentication.', 'automator-connect' )
 		);
 
 		if ( $response_code < 200 || $response_code >= 300 ) {
 			$message = $this->extract_error_message(
 				$decoded_body,
 				$response_body,
-				'Cloudways authentication failed.'
+				esc_html__('Cloudways authentication failed.', 'automator-connect' )
 			);
 
 			throw new Exception( $message, $response_code );
