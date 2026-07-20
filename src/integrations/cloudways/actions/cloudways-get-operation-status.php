@@ -234,12 +234,7 @@ class Cloudways_Get_Operation_Status extends Action {
 		$this->set_token_if_not_empty( $tokens, self::TOKEN_OPERATION_MESSAGE, $operation['message'] ?? '' );
 		$this->set_token_if_not_empty( $tokens, self::TOKEN_OPERATION_APP_ID, $operation['app_id'] ?? '' );
 		$this->set_token_if_not_empty( $tokens, self::TOKEN_OPERATION_APP_LABEL, $operation['app_label'] ?? '' );
-
-		$raw_response = wp_json_encode( $operation );
-
-		if ( is_string( $raw_response ) && '' !== $raw_response ) {
-			$tokens[ self::TOKEN_OPERATION_RAW_RESPONSE ] = $raw_response;
-		}
+		$this->set_token_if_not_empty( $tokens, self::TOKEN_OPERATION_RAW_RESPONSE, $operation );
 
 		$this->hydrate_tokens( $tokens );
 
@@ -305,7 +300,7 @@ class Cloudways_Get_Operation_Status extends Action {
 			$encoded = wp_json_encode( $value );
 
 			if ( false !== $encoded && '' !== $encoded ) {
-				$tokens[ $token ] = $encoded;
+				$tokens[ $token ] = wp_strip_all_tags( $encoded );
 			}
 
 			return;
