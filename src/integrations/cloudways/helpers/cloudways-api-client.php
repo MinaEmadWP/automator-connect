@@ -162,9 +162,9 @@ class Cloudways_Api_Client {
 		$body       = isset( $args['body'] ) && is_array( $args['body'] ) ? $args['body'] : array();
 		$query_args = isset( $args['query_args'] ) && is_array( $args['query_args'] ) ? $args['query_args'] : array();
 
-		$url = $this->build_url( $endpoint, $path, $query_args );
+		$url 		  = $this->build_url( $endpoint, $path, $query_args );
 		$access_token = $this->get_access_token();
-		$headers = $this->build_headers( $access_token );
+		$headers	  = $this->build_headers( $access_token );
 
 		$request_args = $this->build_request_args(
 			$method,
@@ -415,7 +415,7 @@ class Cloudways_Api_Client {
 	private function extract_error_message( array $decoded_body, $raw_body, $default_message = '' ) {
 		foreach ( array( 'error_description', 'message', 'error' ) as $field ) {
 			if ( ! empty( $decoded_body[ $field ] ) && is_string( $decoded_body[ $field ] ) ) {
-				return wp_strip_all_tags( trim( $decoded_body[ $field ] ) );
+				return trim( wp_strip_all_tags( $decoded_body[ $field ] ) );
 			}
 		}
 
@@ -429,7 +429,7 @@ class Cloudways_Api_Client {
 	}
 
 	/**
-	 * Determine whether the response code likely indicates an authentication issue.
+	 * Determine whether the response code most likely indicates an authentication issue.
 	 *
 	 * @param int $response_code Response code.
 	 *
