@@ -170,7 +170,7 @@ class Cloudways_Get_Operation_Status extends Action {
 				'type' => 'text',
 			),
 			self::TOKEN_OPERATION_APP_LABEL => array(
-				'name' => esc_html__( 'App Label', 'automator-connect' ),
+				'name' => esc_html__( 'App label', 'automator-connect' ),
 				'type' => 'text',
 			),
 			self::TOKEN_OPERATION_RAW_RESPONSE => array(
@@ -223,17 +223,24 @@ class Cloudways_Get_Operation_Status extends Action {
 			throw new Exception( esc_html__( 'Cloudways did not return any operation data.', 'automator-connect' ) );
 		}
 
+		$operation_parameters  = $operation['parameters'] ?? null;
+		$decoded_parameters    = is_string( $operation_parameters ) ? json_decode( $operation_parameters, true ) : $operation_parameters;
+
+		$operation_message     = is_array( $decoded_parameters ) && ! empty( $decoded_parameters['message'] )
+			? $decoded_parameters['message']
+			: ( $operation['message'] );
+
 		$tokens = array();
 
 		$this->set_token_if_not_empty( $tokens, self::TOKEN_OPERATION_TYPE, $operation['type'] ?? '' );
 		$this->set_token_if_not_empty( $tokens, self::TOKEN_OPERATION_SERVER_ID, $operation['server_id'] ?? '' );
+		$this->set_token_if_not_empty( $tokens, self::TOKEN_OPERATION_APP_ID, $operation['app_id'] ?? '' );
+		$this->set_token_if_not_empty( $tokens, self::TOKEN_OPERATION_APP_LABEL, $operation['app_label'] ?? '' );
 		$this->set_token_if_not_empty( $tokens, self::TOKEN_OPERATION_ESTIMATED_TIME_REMAINING, $operation['estimated_time_remaining'] ?? '' );
 		$this->set_token_if_not_empty( $tokens, self::TOKEN_OPERATION_FRONTEND_STEP_NUMBER, $operation['frontend_step_number'] ?? '' );
 		$this->set_token_if_not_empty( $tokens, self::TOKEN_OPERATION_STATUS, $operation['status'] ?? '' );
 		$this->set_token_if_not_empty( $tokens, self::TOKEN_OPERATION_IS_COMPLETED, $operation['is_completed'] ?? '' );
-		$this->set_token_if_not_empty( $tokens, self::TOKEN_OPERATION_MESSAGE, $operation['message'] ?? '' );
-		$this->set_token_if_not_empty( $tokens, self::TOKEN_OPERATION_APP_ID, $operation['app_id'] ?? '' );
-		$this->set_token_if_not_empty( $tokens, self::TOKEN_OPERATION_APP_LABEL, $operation['app_label'] ?? '' );
+		$this->set_token_if_not_empty( $tokens, self::TOKEN_OPERATION_MESSAGE, $operation_message ?? '' );
 		$this->set_token_if_not_empty( $tokens, self::TOKEN_OPERATION_RAW_RESPONSE, $operation );
 
 		$this->hydrate_tokens( $tokens );
