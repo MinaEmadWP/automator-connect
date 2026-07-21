@@ -40,16 +40,16 @@ Cloudways operations (like adding an app or starting a backup) run asynchronousl
 * [Uncanny Automator](https://wordpress.org/plugins/uncanny-automator/) must be installed and active.
 * A [Cloudways account](https://unified.cloudways.com/) with API access (email + API key from your Cloudways account settings) for the Cloudways integration.
 
-## Support
-
-This is an independently maintained plugin, not officially affiliated with WordPress, Uncanny Automator or Cloudways. Please open an issue on [GitHub](https://github.com/MinaEmadWP/automator-connect) for bugs or feature requests.
-
 ## Installation
 
 1. Upload the `automator-connect` folder to the `/wp-content/plugins/` directory, or install the plugin zip through the WordPress admin (Plugins > Add New > Upload Plugin).
 2. Activate Automator Connect through the 'Plugins' menu in WordPress.
 3. Go to Automator > App Integrations, find the app you want to connect (for example, Cloudways), and connect your account with the required credentials.
 4. Build a recipe in Uncanny Automator and add any of the triggers/actions.
+
+## Support
+
+This is an independently maintained plugin, not officially affiliated with WordPress, Uncanny Automator or Cloudways. Please open an issue on [GitHub](https://github.com/MinaEmadWP/automator-connect) for bugs or feature requests.
 
 ## Frequently Asked Questions
 
