@@ -196,7 +196,7 @@ class Cloudways_Get_Operation_Status extends Action {
 	protected function process_action( $user_id, $action_data, $recipe_id, $args, $parsed ) {
 		$action_meta = isset( $action_data['meta'] ) && is_array( $action_data['meta'] ) ? $action_data['meta'] : array();
 
-		$operation_id = trim(
+		$operation_id = sanitize_text_field(
 			(string) Automator()->parse->text(
 				$action_meta[ self::OPERATION_ID ] ?? '',
 				$recipe_id,
@@ -209,7 +209,7 @@ class Cloudways_Get_Operation_Status extends Action {
 			throw new Exception( esc_html__( 'Cloudways operation ID is missing.', 'automator-connect' ) );
 		}
 
-		$response = $this->get_caller()->get_operation_status( absint( $operation_id ) );
+		$response = $this->get_caller()->get_operation_status( $operation_id );
 
 		if ( ! is_array( $response ) ) {
 			throw new Exception( esc_html__( 'Cloudways returned an invalid response for the operation status.', 'automator-connect' ) );
@@ -283,9 +283,7 @@ class Cloudways_Get_Operation_Status extends Action {
 				return;
 			}
 
-			$value = sanitize_text_field( $value );
-
-			$tokens[ $token ] = trim( $value );
+			$tokens[ $token ] = sanitize_text_field( $value );
 
 			return;
 		}
