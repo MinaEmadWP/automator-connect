@@ -121,8 +121,8 @@ class Cloudways_Remove_App extends Action {
 	protected function process_action( $user_id, $action_data, $recipe_id, $args, $parsed ) {
 		$action_meta = isset( $action_data['meta'] ) && is_array( $action_data['meta'] ) ? $action_data['meta'] : array();
 
-		$app_id = trim(
-			(string) Automator()->parse->text(
+		$app_id = absint(
+			Automator()->parse->text(
 				$action_meta[ self::APP_ID ] ?? '',
 				$recipe_id,
 				$user_id,
@@ -130,7 +130,7 @@ class Cloudways_Remove_App extends Action {
 			)
 		);
 
-		if ( '' === $app_id ) {
+		if ( 0 === $app_id ) {
 			throw new Exception( esc_html__( 'Cloudways application is missing.', 'automator-connect' ) );
 		}
 
@@ -144,7 +144,7 @@ class Cloudways_Remove_App extends Action {
 			'server_id' => $server_id,
 		);
 
-		$response = $this->get_caller()->start_remove_app_process( absint( $app_id ), $query_args );
+		$response = $this->get_caller()->start_remove_app_process(  $app_id, $query_args );
 
 		if ( ! is_array( $response ) || empty( $response['operation_id'] ) ) {
 			throw new Exception( esc_html__( 'Cloudways did not return an operation ID.', 'automator-connect' ) );
