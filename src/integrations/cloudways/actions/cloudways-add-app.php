@@ -156,12 +156,12 @@ class Cloudways_Add_App extends Action {
 	protected function process_action( $user_id, $action_data, $recipe_id, $args, $parsed ) {
 		$action_meta = isset( $action_data['meta'] ) && is_array( $action_data['meta'] ) ? $action_data['meta'] : array();
 
-		$server_id  = trim( (string) Automator()->parse->text( $action_meta[ self::SERVER_ID ] ?? '', $recipe_id, $user_id, $args ) );
-		$app_label   = trim( (string) Automator()->parse->text( $action_meta[ self::APP_NAME ] ?? '', $recipe_id, $user_id, $args ) );
-		$app_type   = trim( (string) Automator()->parse->text( $action_meta[ self::APP_TYPE ] ?? '', $recipe_id, $user_id, $args ) );
-		$project_name = trim( (string) Automator()->parse->text( $action_meta[ self::PROJECT_NAME ] ?? '', $recipe_id, $user_id, $args ) );
+		$server_id  = absint( Automator()->parse->text( $action_meta[ self::SERVER_ID ] ?? '', $recipe_id, $user_id, $args ) );
+		$app_label   = sanitize_text_field( (string) Automator()->parse->text( $action_meta[ self::APP_NAME ] ?? '', $recipe_id, $user_id, $args ) );
+		$app_type   = sanitize_key( (string) Automator()->parse->text( $action_meta[ self::APP_TYPE ] ?? '', $recipe_id, $user_id, $args ) );
+		$project_name = sanitize_text_field( (string) Automator()->parse->text( $action_meta[ self::PROJECT_NAME ] ?? '', $recipe_id, $user_id, $args ) );
 
-		if ( '' === $server_id ) {
+		if ( 0 === $server_id ) {
 			throw new Exception( esc_html__( 'Cloudways server is missing.', 'automator-connect' ) );
 		}
 
@@ -174,14 +174,14 @@ class Cloudways_Add_App extends Action {
 		}
 
 		$body = array(
-			'server_id' => absint( $server_id ),
-			'app_label'  => sanitize_text_field( $app_label ),
-			'application'  => sanitize_text_field( $app_type ),
+			'server_id' => $server_id,
+			'app_label'  => $app_label,
+			'application'  => $app_type,
             'stack_version' => 'v2',
 		);
 
 		if ( '' !== $project_name ) {
-			$body['project_name'] = sanitize_text_field( $project_name );
+			$body['project_name'] = $project_name;
 		}
 
 		$response = $this->get_caller()->start_add_app_process( $body );
