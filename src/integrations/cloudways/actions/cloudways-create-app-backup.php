@@ -121,8 +121,8 @@ class Cloudways_Create_App_Backup extends Action {
 	protected function process_action( $user_id, $action_data, $recipe_id, $args, $parsed ) {
 		$action_meta = isset( $action_data['meta'] ) && is_array( $action_data['meta'] ) ? $action_data['meta'] : array();
 
-		$app_id = trim(
-			(string) Automator()->parse->text(
+		$app_id = absint(
+			Automator()->parse->text(
 				$action_meta[ self::APP_ID ] ?? '',
 				$recipe_id,
 				$user_id,
@@ -130,7 +130,7 @@ class Cloudways_Create_App_Backup extends Action {
 			)
 		);
 
-		if ( '' === $app_id ) {
+		if ( 0 === $app_id ) {
 			throw new Exception( esc_html__( 'Cloudways application is missing.', 'automator-connect' ) );
 		}
 
@@ -142,7 +142,7 @@ class Cloudways_Create_App_Backup extends Action {
 
 		$body = array(
 			'server_id' => $server_id,
-			'app_id'    => absint( $app_id ),
+			'app_id'    => $app_id,
 		);
 
 		$response = $this->get_caller()->start_app_backup_process( $body );
@@ -199,7 +199,7 @@ class Cloudways_Create_App_Backup extends Action {
 	}
 
     /**
-	 * Get the server ID from The application ID.
+	 * Get the server ID from the application ID.
 	 *
      * @param int|string $app_id Application ID.
 	 * 
