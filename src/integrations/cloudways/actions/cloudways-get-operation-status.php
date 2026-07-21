@@ -145,6 +145,14 @@ class Cloudways_Get_Operation_Status extends Action {
 				'name' => esc_html__( 'Server ID', 'automator-connect' ),
 				'type' => 'text',
 			),
+			self::TOKEN_OPERATION_APP_ID => array(
+				'name' => esc_html__( 'App ID', 'automator-connect' ),
+				'type' => 'text',
+			),
+			self::TOKEN_OPERATION_APP_LABEL => array(
+				'name' => esc_html__( 'App label', 'automator-connect' ),
+				'type' => 'text',
+			),
 			self::TOKEN_OPERATION_ESTIMATED_TIME_REMAINING => array(
 				'name' => esc_html__( 'Estimated time remaining', 'automator-connect' ),
 				'type' => 'text',
@@ -163,14 +171,6 @@ class Cloudways_Get_Operation_Status extends Action {
 			),
 			self::TOKEN_OPERATION_MESSAGE => array(
 				'name' => esc_html__( 'Message', 'automator-connect' ),
-				'type' => 'text',
-			),
-			self::TOKEN_OPERATION_APP_ID => array(
-				'name' => esc_html__( 'App ID', 'automator-connect' ),
-				'type' => 'text',
-			),
-			self::TOKEN_OPERATION_APP_LABEL => array(
-				'name' => esc_html__( 'App label', 'automator-connect' ),
 				'type' => 'text',
 			),
 			self::TOKEN_OPERATION_RAW_RESPONSE => array(
@@ -215,6 +215,7 @@ class Cloudways_Get_Operation_Status extends Action {
 			throw new Exception( esc_html__( 'Cloudways returned an invalid response for the operation status.', 'automator-connect' ) );
 		}
 
+		// Handle Cloudways API response inconsistencies by normalizing the supported data formats.
 		$operation = ! empty( $response['operation'] ) && is_array( $response['operation'] )
 			? $response['operation']
 			: $response;
@@ -228,7 +229,7 @@ class Cloudways_Get_Operation_Status extends Action {
 
 		$operation_message     = is_array( $decoded_parameters ) && ! empty( $decoded_parameters['message'] )
 			? $decoded_parameters['message']
-			: ( $operation['message'] );
+			: $operation['message'];
 
 		$tokens = array();
 
