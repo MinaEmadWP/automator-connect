@@ -221,10 +221,7 @@ class Cloudways_Api_Client {
 
 		$request_args = array(
 			'timeout' => $this->get_timeout(),
-			'headers' => array(
-				'Accept'        => 'application/json',
-				'Content-Type'  => 'application/x-www-form-urlencoded; charset=utf-8',
-			),
+			'headers' => $this->build_headers(),
 			'method'  => 'POST',
 			'body'    => array(
 				'email'      => $this->credentials->get_email(),
@@ -317,16 +314,21 @@ class Cloudways_Api_Client {
 	/**
 	 * Build the request headers.
 	 *
-	 * @param string $access_token Access token.
+	 * @param string $access_token Optional access token.
 	 *
 	 * @return array
 	 */
-	private function build_headers( $access_token ) {
-		return array(
+	private function build_headers( $access_token = '' ) {
+		$headers = array(
 			'Accept'       => 'application/json',
 			'Content-Type'  => 'application/x-www-form-urlencoded; charset=utf-8',
-			'Authorization' => 'Bearer ' . $access_token,
 		);
+
+		if ( '' !== $access_token ) {
+			$headers['Authorization'] = 'Bearer ' . $access_token;
+		}
+
+		return $headers;
 	}
 
 	/**
@@ -335,7 +337,7 @@ class Cloudways_Api_Client {
 	 * @param string $method  HTTP method.
 	 * @param int    $timeout Request timeout.
 	 * @param array  $headers HTTP headers.
-	 * @param array  $body    Request body.
+	 * @param array  $body    Optional request body.
 	 *
 	 * @return array
 	 */
