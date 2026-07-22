@@ -23,7 +23,7 @@ class Cloudways_Add_App extends Action {
 	/**
 	 * Action code.
 	 */
-	private const ACTION_CODE = 'cloudways_add_app';
+	private const ACTION_CODE = 'CLOUDWAYS_ADD_APP';
 
 	/**
 	 * Server field option code.
@@ -39,6 +39,11 @@ class Cloudways_Add_App extends Action {
 	 * Application type field option code.
 	 */
 	private const APP_TYPE = 'APP_TYPE';
+
+	/**
+	 * Application stack version option code.
+	 */
+	 private const STACK_VERSION = 'STACK_VERSION';
 
 	/**
 	 * Project ID field option code.
@@ -115,6 +120,15 @@ class Cloudways_Add_App extends Action {
 					'placeholder' => esc_html__( 'Select an application type', 'automator-connect' ),
 				)
 			),
+			Automator()->helpers->recipe->field->select(
+				array(
+					'option_code' => self::STACK_VERSION,
+					'label'       => esc_html__( 'Stack version', 'automator-connect' ),
+					'required'    => true,
+					'options'     => $this->get_stack_version_options(),
+					'placeholder' => esc_html__( 'Select a stack version', 'automator-connect' ),
+				)
+			),
 			Automator()->helpers->recipe->field->text(
 				array(
 					'option_code' => self::PROJECT_NAME,
@@ -159,6 +173,7 @@ class Cloudways_Add_App extends Action {
 		$server_id  = absint( Automator()->parse->text( $action_meta[ self::SERVER_ID ] ?? '', $recipe_id, $user_id, $args ) );
 		$app_label   = sanitize_text_field( (string) Automator()->parse->text( $action_meta[ self::APP_NAME ] ?? '', $recipe_id, $user_id, $args ) );
 		$app_type   = sanitize_key( (string) Automator()->parse->text( $action_meta[ self::APP_TYPE ] ?? '', $recipe_id, $user_id, $args ) );
+		$stack_version   = sanitize_key( (string) Automator()->parse->text( $action_meta[ self::STACK_VERSION ] ?? '', $recipe_id, $user_id, $args ) );
 		$project_name = sanitize_text_field( (string) Automator()->parse->text( $action_meta[ self::PROJECT_NAME ] ?? '', $recipe_id, $user_id, $args ) );
 
 		if ( 0 === $server_id ) {
@@ -173,11 +188,15 @@ class Cloudways_Add_App extends Action {
 			throw new Exception( esc_html__( 'Cloudways application type is missing.', 'automator-connect' ) );
 		}
 
+		if ( '' === $stack_version ) {
+			throw new Exception( esc_html__( 'Cloudways stack version is missing.', 'automator-connect' ) );
+		}
+
 		$body = array(
 			'server_id' => $server_id,
 			'app_label'  => $app_label,
 			'application'  => $app_type,
-            'stack_version' => 'v2',
+            'stack_version' => $stack_version,
 		);
 
 		if ( '' !== $project_name ) {
@@ -214,7 +233,7 @@ class Cloudways_Add_App extends Action {
 		}
 
 		if ( empty( $this->dependencies[1] ) || ! ( $this->dependencies[1] instanceof Cloudways_Api_Caller ) ) {
-			throw new Exception( esc_html__( 'Cloudways API caller dependency is missing.', 'automator-connect' ) );
+			throw new Exception( 'Cloudways API caller dependency is missing.' );
 		}
 
 		$this->caller = $this->dependencies[1];
@@ -253,12 +272,38 @@ class Cloudways_Add_App extends Action {
 				'value' => 'woocommerce',
 			),
 			array(
+				'text'  => esc_html__( 'Wordpress Multisite', 'automator-connect' ),
+				'value' => 'wordpressmu',
+			),
+			array(
+				'text'  => esc_html__( 'Magento', 'automator-connect' ),
+				'value' => 'magento',
+			),
+			array(
 				'text'  => esc_html__( 'PHP', 'automator-connect' ),
 				'value' => 'phpstack',
 			),
 			array(
 				'text'  => esc_html__( 'Laravel', 'automator-connect' ),
 				'value' => 'phplaravel',
+			),
+		);
+	}
+
+	/**
+	 * Get the stack version dropdown options.
+	 *
+	 * @return array
+	 */
+	private function get_stack_version_options() {
+		return array(
+			array(
+				'text'  => esc_html__( 'Lightning stack', 'automator-connect' ),
+				'value' => 'v2',
+			),
+			array(
+				'text'  => esc_html__( 'Hybrid stack', 'automator-connect' ),
+				'value' => 'v1',
 			),
 		);
 	}
