@@ -23,7 +23,7 @@ class Cloudways_Remove_App extends Action {
 	/**
 	 * Action code.
 	 */
-	private const ACTION_CODE = 'cloudways_remove_app';
+	private const ACTION_CODE = 'CLOUDWAYS_REMOVE_APP';
 
 	/**
 	 * Server field option code.
@@ -174,7 +174,7 @@ class Cloudways_Remove_App extends Action {
 		}
 
 		if ( empty( $this->dependencies[1] ) || ! ( $this->dependencies[1] instanceof Cloudways_Api_Caller ) ) {
-			throw new Exception( esc_html__( 'Cloudways API caller dependency is missing.', 'automator-connect' ) );
+			throw new Exception( 'Cloudways API caller dependency is missing.' );
 		}
 
 		$this->caller = $this->dependencies[1];
