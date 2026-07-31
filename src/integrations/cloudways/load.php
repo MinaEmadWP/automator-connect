@@ -22,5 +22,5 @@ if ( ! class_exists( 'Automator_Connect\Integrations\Cloudways\Cloudways_Integra
 	return;
 }
 
-// Set main integeration object.
+// Set main integration object.
 new Automator_Connect\Integrations\Cloudways\Cloudways_Integration();
