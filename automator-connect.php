@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name:       Automator Connect
- * Description:       Extends Uncanny Automator with a number of third-party integrations.
+ * Description:       Extends Uncanny Automator with third-party plugin and app integrations.
  * Version:           1.0.0
  * Requires at least: 5.8
  * Requires PHP:      7.4
