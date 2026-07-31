@@ -32,7 +32,7 @@ class Cloudways_Api_Caller {
 	 *
 	 * @var string
 	 */
-	 private const APPS_TAKEBACKUP_ENDPOINT = 'app/manage/takeBackup';
+	private const APPS_TAKEBACKUP_ENDPOINT = 'app/manage/takeBackup';
 
 	/**
 	 * Operations endpoint.
@@ -123,10 +123,6 @@ class Cloudways_Api_Caller {
 	 * @throws Exception When the request fails.
 	 */
 	public function get_operation_status( $operation_id ) {
-
-		return $this->client->get(
-			self::OPERATIONS_ENDPOINT,
-			$operation_id 
-		);
+		return $this->client->get( self::OPERATIONS_ENDPOINT, $operation_id	);
 	}
 }
