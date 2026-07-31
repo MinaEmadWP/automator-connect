@@ -23,7 +23,7 @@ class Cloudways_Create_App_Backup extends Action {
     /**
 	 * Action code.
 	 */
-	private const ACTION_CODE = 'cloudways_create_app_backup';
+	private const ACTION_CODE = 'CLOUDWAYS_CREATE_APP_BACKUP';
 
 	/**
 	 * Server field option code.
@@ -175,7 +175,7 @@ class Cloudways_Create_App_Backup extends Action {
 		}
 
 		if ( empty( $this->dependencies[1] ) || ! ( $this->dependencies[1] instanceof Cloudways_Api_Caller ) ) {
-			throw new Exception( esc_html__( 'Cloudways API caller dependency is missing.', 'automator-connect' ) );
+			throw new Exception( 'Cloudways API caller dependency is missing.' );
 		}
 
 		$this->caller = $this->dependencies[1];
