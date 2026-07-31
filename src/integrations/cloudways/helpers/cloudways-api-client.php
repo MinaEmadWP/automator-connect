@@ -92,7 +92,7 @@ class Cloudways_Api_Client {
 	 * Perform a PUT request.
 	 *
 	 * @param string $endpoint       Relative API endpoint.
-	 * @param array  $body           Request body.
+	 * @param array  $body           Optional request body.
 	 * @param array  $query_args     Optional query arguments.
 	 * @param array  $args           Optional request arguments.
 	 *
@@ -234,7 +234,7 @@ class Cloudways_Api_Client {
 		$response_code = (int) wp_remote_retrieve_response_code( $response );
 		$response_body = (string) wp_remote_retrieve_body( $response );
 
-		$decoded_body = $this->decode_response_body(
+		$decoded_body  = $this->decode_response_body(
 			$response_body,
 			esc_html__('Cloudways returned an invalid JSON response during authentication.', 'automator-connect' )
 		);
@@ -431,7 +431,7 @@ class Cloudways_Api_Client {
 	}
 
 	/**
-	 * Determine whether the response code most likely indicates an authentication issue.
+	 * Determine whether the response code indicates an authentication issue.
 	 *
 	 * @param int $response_code Response code.
 	 *
