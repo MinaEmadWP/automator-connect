@@ -150,7 +150,7 @@ class Cloudways_Settings extends Premium_Integration_Settings {
 					'type'    => 'error',
 					'heading' => esc_html__( 'Unable to connect to Cloudways', 'automator-connect' ),
 					'content' => sprintf(
-						/* translators: %s: error message. */
+						/* translators: %s: API error message. */
 						esc_html__( 'The provided Cloudways credentials could not be validated. Error: %s', 'automator-connect' ),
 						esc_html( $e->getMessage() )
 					),
