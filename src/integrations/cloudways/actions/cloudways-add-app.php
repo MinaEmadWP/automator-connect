@@ -43,7 +43,7 @@ class Cloudways_Add_App extends Action {
 	/**
 	 * Application stack version option code.
 	 */
-	 private const STACK_VERSION = 'STACK_VERSION';
+	private const STACK_VERSION = 'STACK_VERSION';
 
 	/**
 	 * Project ID field option code.
@@ -173,11 +173,11 @@ class Cloudways_Add_App extends Action {
 		$server_id  = absint( Automator()->parse->text( $action_meta[ self::SERVER_ID ] ?? '', $recipe_id, $user_id, $args ) );
 		$app_label   = sanitize_text_field( (string) Automator()->parse->text( $action_meta[ self::APP_NAME ] ?? '', $recipe_id, $user_id, $args ) );
 		$app_type   = sanitize_key( (string) Automator()->parse->text( $action_meta[ self::APP_TYPE ] ?? '', $recipe_id, $user_id, $args ) );
-		$stack_version   = sanitize_key( (string) Automator()->parse->text( $action_meta[ self::STACK_VERSION ] ?? '', $recipe_id, $user_id, $args ) );
+		$stack_version  = sanitize_key( (string) Automator()->parse->text( $action_meta[ self::STACK_VERSION ] ?? '', $recipe_id, $user_id, $args ) );
 		$project_name = sanitize_text_field( (string) Automator()->parse->text( $action_meta[ self::PROJECT_NAME ] ?? '', $recipe_id, $user_id, $args ) );
 
 		if ( 0 === $server_id ) {
-			throw new Exception( esc_html__( 'Cloudways server is missing.', 'automator-connect' ) );
+			throw new Exception( esc_html__( 'Cloudways server ID is missing.', 'automator-connect' ) );
 		}
 
 		if ( '' === $app_label ) {
