@@ -95,7 +95,7 @@ class Cloudways_App_Helpers {
 
 			$options[] = array(
 				'text'  => trim( (string) $server['label'] ),
-				'value' => (int) $server['id'],
+				'value' => $server['id'],
 			);
 		}
 
@@ -136,7 +136,7 @@ class Cloudways_App_Helpers {
 
 				$options[] = array(
 					'text'  => $server_label . ' — ' . trim( (string) $app['label'] ),
-					'value' => (int) $app['id'],
+					'value' => $app['id'],
 				);
 			}
 		}
@@ -168,19 +168,19 @@ class Cloudways_App_Helpers {
 				continue;
 			}
 	
-		foreach ( $server['apps'] as $app ) {
-			if ( empty( $app['id'] ) ) {
-				continue;
+			foreach ( $server['apps'] as $app ) {
+				if ( empty( $app['id'] ) ) {
+					continue;
+				}
+		
+				if ( absint( $app['id'] ) === $app_id ) {
+					return absint( $server['id'] );
+				}
 			}
-	
-			if ( absint( $app['id'] ) === $app_id ) {
-				return absint( $server['id'] );
-			}
-		}
 
 		}
 	
 			return 0;
-		}
+	}
 
 }
