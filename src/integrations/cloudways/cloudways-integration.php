@@ -38,7 +38,7 @@ class Cloudways_Integration extends Integration {
 	/**
 	 * Icon image URL.
 	 */
-	 private const ICON_URL = 'img/cloudways-icon.svg';
+	private const ICON_URL = 'img/cloudways-icon.svg';
 
 	/**
 	 * Cloudways API credentials.
