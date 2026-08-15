@@ -81,8 +81,7 @@ class Cloudways_Integration extends Integration {
 
 		$this->set_icon_url( plugin_dir_url( __FILE__ ) . self::ICON_URL );
 		$this->set_settings_url(  admin_url( self::SETTINGS_URL ) );
-		$this->set_plugin_file_path( $this->get_main_plugin_file_path() );
-
+		
 		$this->set_is_third_party( true );
 
 		// Check credentials and set connection status (true or false).
@@ -126,18 +125,5 @@ class Cloudways_Integration extends Integration {
 		$this->client      = new Cloudways_Api_Client( $this->credentials );
 		$this->caller      = new Cloudways_Api_Caller( $this->client );
 		$this->app_helpers = new Cloudways_App_Helpers( $this->caller );
-	}
-
-	/**
-	 * Get the main plugin file path if available.
-	 *
-	 * @return string
-	 */
-	private function get_main_plugin_file_path() {
-		if ( defined( 'AUTOMATOR_CONNECT_BASE_FILE' ) ) {
-			return (string) AUTOMATOR_CONNECT_BASE_FILE;
-		}
-
-		return '';
 	}
 }
