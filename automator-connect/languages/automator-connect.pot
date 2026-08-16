@@ -1,0 +1,510 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Automator Connect\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-08-16 20:08+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.8.5; wp-7.0; php-8.2.30\n"
+"X-Domain: automator-connect"
+
+#: src/integrations/wp-ulike/triggers/wp-ulike-user-likes-comment.php:134 
+#: src/integrations/wp-ulike/triggers/wp-ulike-user-likes-comment.php:141
+msgid "A user likes a comment"
+msgstr ""
+
+#: src/integrations/wp-ulike/triggers/wp-ulike-user-likes-post-type.php:138
+#, php-format
+msgid "A user likes {{a post type:%1$s}}"
+msgstr ""
+
+#: src/integrations/wp-ulike/triggers/wp-ulike-user-likes-post-type.php:147
+msgid "A user likes {{a post type}}"
+msgstr ""
+
+#: src/integrations/wp-ulike/triggers/wp-ulike-user-unlikes-comment.php:134 
+#: src/integrations/wp-ulike/triggers/wp-ulike-user-unlikes-comment.php:141
+msgid "A user unlikes a comment"
+msgstr ""
+
+#: src/integrations/wp-ulike/triggers/wp-ulike-user-unlikes-post-type.php:138
+#, php-format
+msgid "A user unlikes {{a post type:%1$s}}"
+msgstr ""
+
+#: src/integrations/wp-ulike/triggers/wp-ulike-user-unlikes-post-type.php:147
+msgid "A user unlikes {{a post type}}"
+msgstr ""
+
+#: src/integrations/wp-ulike/helpers/wp-ulike-helpers.php:25
+msgid "Any post type"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-get-operation-status.php:148
+msgid "App ID"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-get-operation-status.php:152
+msgid "App label"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-create-app-backup.php:84 
+#: src/integrations/cloudways/actions/cloudways-remove-app.php:84
+msgid "Application"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-add-app.php:108
+msgid "Application name"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-add-app.php:116
+msgid "Application type"
+msgstr ""
+
+#. Name of the plugin
+msgid "Automator Connect"
+msgstr ""
+
+#: src/integrations/cloudways/settings/cloudways-settings.php:177
+msgid "Cloudways access token"
+msgstr ""
+
+#: src/integrations/cloudways/helpers/cloudways-api-client.php:198
+msgid "Cloudways access token is missing."
+msgstr ""
+
+#: src/integrations/cloudways/settings/cloudways-settings.php:135
+msgid "Cloudways Account connected successfully"
+msgstr ""
+
+#: src/integrations/cloudways/helpers/cloudways-api-client.php:178
+msgid "Cloudways API request failed."
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-create-app-backup.php:133 
+#: src/integrations/cloudways/actions/cloudways-remove-app.php:133
+msgid "Cloudways application is missing."
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-add-app.php:183
+msgid "Cloudways application name is missing."
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-add-app.php:187
+msgid "Cloudways application type is missing."
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-create-app-backup.php:150 
+#: src/integrations/cloudways/actions/cloudways-add-app.php:208 
+#: src/integrations/cloudways/actions/cloudways-remove-app.php:149
+msgid "Cloudways did not return an operation ID."
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-get-operation-status.php:223
+msgid "Cloudways did not return any operation data."
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-get-operation-status.php:208
+msgid "Cloudways operation ID is missing."
+msgstr ""
+
+#: src/integrations/cloudways/helpers/cloudways-api-client.php:171
+msgid "Cloudways returned an invalid JSON response."
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-get-operation-status.php:214
+msgid "Cloudways returned an invalid response for the operation status."
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-create-app-backup.php:139 
+#: src/integrations/cloudways/actions/cloudways-remove-app.php:139
+msgid "Cloudways server could not be resolved from the selected application."
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-add-app.php:179
+msgid "Cloudways server ID is missing."
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-add-app.php:191
+msgid "Cloudways stack version is missing."
+msgstr ""
+
+#: src/integrations/wp-ulike/triggers/wp-ulike-user-unlikes-comment.php:228 
+#: src/integrations/wp-ulike/triggers/wp-ulike-user-likes-comment.php:228
+msgid "Comment Content"
+msgstr ""
+
+#: src/integrations/wp-ulike/triggers/wp-ulike-user-unlikes-comment.php:222 
+#: src/integrations/wp-ulike/triggers/wp-ulike-user-likes-comment.php:222
+msgid "Comment ID"
+msgstr ""
+
+#: src/integrations/wp-ulike/triggers/wp-ulike-user-unlikes-comment.php:240 
+#: src/integrations/wp-ulike/triggers/wp-ulike-user-likes-comment.php:240
+msgid "Comment Post ID"
+msgstr ""
+
+#: src/integrations/wp-ulike/triggers/wp-ulike-user-unlikes-comment.php:234 
+#: src/integrations/wp-ulike/triggers/wp-ulike-user-likes-comment.php:234
+msgid "Comment URL"
+msgstr ""
+
+#: src/integrations/cloudways/settings/cloudways-settings.php:114 
+#: src/integrations/kinsta/settings/kinsta-settings.php:122
+msgid "Connect Account"
+msgstr ""
+
+#: src/integrations/cloudways/settings/cloudways-settings.php:121 
+#: src/integrations/kinsta/settings/kinsta-settings.php:130
+msgid "Disconnect"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-get-operation-status.php:126 
+#: src/integrations/kinsta/actions/kinsta-get-operation-status.php:86
+msgid "Enter an operation ID or use a token"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-get-operation-status.php:156
+msgid "Estimated time remaining"
+msgstr ""
+
+#. Description of the plugin
+msgid "Extends Uncanny Automator with third-party plugin and app integrations."
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-get-operation-status.php:160
+msgid "Frontend step number"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-get-operation-status.php:107
+msgid "Get the status of a Cloudways operation"
+msgstr ""
+
+#: src/integrations/kinsta/actions/kinsta-get-operation-status.php:67
+msgid "Get the status of a Kinsta operation"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-get-operation-status.php:101
+#, php-format
+msgid "Get the status of Cloudways operation {{ID:%1$s}}"
+msgstr ""
+
+#: src/integrations/kinsta/actions/kinsta-get-operation-status.php:61
+#, php-format
+msgid "Get the status of Kinsta operation {{ID:%1$s}}"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://minaemad.com/"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-add-app.php:304
+msgid "Hybrid stack"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-get-operation-status.php:168
+msgid "Is completed"
+msgstr ""
+
+#: src/integrations/kinsta/settings/kinsta-settings.php:176
+msgid "Kinsta Account connected successfully"
+msgstr ""
+
+#: src/integrations/kinsta/settings/kinsta-settings.php:218
+msgid "Kinsta API key"
+msgstr ""
+
+#: src/integrations/kinsta/helpers/kinsta-api-client.php:193
+msgid "Kinsta API key is missing."
+msgstr ""
+
+#: src/integrations/kinsta/helpers/kinsta-api-client.php:173
+msgid "Kinsta API request failed."
+msgstr ""
+
+#: src/integrations/kinsta/helpers/kinsta-api-caller.php:96 
+#: src/integrations/kinsta/helpers/kinsta-api-caller.php:116 
+#: src/integrations/kinsta/helpers/kinsta-api-caller.php:164
+msgid "Kinsta company ID is missing."
+msgstr ""
+
+#: src/integrations/kinsta/settings/kinsta-settings.php:149
+msgid "Kinsta did not return an associated company ID."
+msgstr ""
+
+#: src/integrations/kinsta/actions/kinsta-get-operation-status.php:136
+msgid "Kinsta operation ID is missing."
+msgstr ""
+
+#: src/integrations/kinsta/actions/kinsta-create-plain-site.php:173
+msgid "Kinsta region is missing."
+msgstr ""
+
+#: src/integrations/kinsta/helpers/kinsta-api-client.php:260
+msgid "Kinsta request body could not be encoded as JSON."
+msgstr ""
+
+#: src/integrations/kinsta/helpers/kinsta-api-client.php:166
+msgid "Kinsta returned an invalid JSON response."
+msgstr ""
+
+#: src/integrations/kinsta/actions/kinsta-delete-site.php:157 
+#: src/integrations/kinsta/actions/kinsta-create-plain-site.php:191 
+#: src/integrations/kinsta/actions/kinsta-get-operation-status.php:146
+msgid "Kinsta returned an invalid response."
+msgstr ""
+
+#: src/integrations/kinsta/actions/kinsta-delete-site.php:146
+msgid "Kinsta site ID is missing."
+msgstr ""
+
+#: src/integrations/kinsta/actions/kinsta-create-plain-site.php:169
+msgid "Kinsta site name is missing."
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-add-app.php:286
+msgid "Laravel"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-add-app.php:300
+msgid "Lightning stack"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-add-app.php:278
+msgid "Magento"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-get-operation-status.php:172 
+#: src/integrations/kinsta/actions/kinsta-delete-site.php:106 
+#: src/integrations/kinsta/actions/kinsta-create-plain-site.php:120 
+#: src/integrations/kinsta/actions/kinsta-get-operation-status.php:100
+msgid "Message"
+msgstr ""
+
+#. Author of the plugin
+msgid "Mina Emad"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-add-app.php:110
+msgid "My application"
+msgstr ""
+
+#: src/integrations/kinsta/actions/kinsta-create-plain-site.php:97
+msgid "My site"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-create-app-backup.php:101 
+#: src/integrations/cloudways/actions/cloudways-get-operation-status.php:124 
+#: src/integrations/cloudways/actions/cloudways-add-app.php:150 
+#: src/integrations/cloudways/actions/cloudways-remove-app.php:101 
+#: src/integrations/kinsta/actions/kinsta-delete-site.php:114 
+#: src/integrations/kinsta/actions/kinsta-create-plain-site.php:128 
+#: src/integrations/kinsta/actions/kinsta-get-operation-status.php:84
+msgid "Operation ID"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-get-operation-status.php:140
+msgid "Operation type"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-add-app.php:136
+msgid "Optional"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-add-app.php:282
+msgid "PHP"
+msgstr ""
+
+#: src/integrations/wp-ulike/triggers/wp-ulike-user-unlikes-post-type.php:260 
+#: src/integrations/wp-ulike/triggers/wp-ulike-user-likes-post-type.php:260
+msgid "Post ID"
+msgstr ""
+
+#: src/integrations/wp-ulike/triggers/wp-ulike-user-unlikes-post-type.php:266 
+#: src/integrations/wp-ulike/triggers/wp-ulike-user-likes-post-type.php:266
+msgid "Post Title"
+msgstr ""
+
+#: src/integrations/wp-ulike/triggers/wp-ulike-user-unlikes-post-type.php:170 
+#: src/integrations/wp-ulike/triggers/wp-ulike-user-likes-post-type.php:170
+msgid "Post type"
+msgstr ""
+
+#: src/integrations/wp-ulike/triggers/wp-ulike-user-unlikes-post-type.php:272 
+#: src/integrations/wp-ulike/triggers/wp-ulike-user-likes-post-type.php:272
+msgid "Post URL"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-add-app.php:134
+msgid "Project name"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-get-operation-status.php:176
+msgid "Raw operation response"
+msgstr ""
+
+#: src/integrations/kinsta/actions/kinsta-create-plain-site.php:103
+msgid "Region"
+msgstr ""
+
+#: src/integrations/wp-ulike/triggers/wp-ulike-user-unlikes-post-type.php:173 
+#: src/integrations/wp-ulike/triggers/wp-ulike-user-likes-post-type.php:173
+msgid "Select a post type"
+msgstr ""
+
+#: src/integrations/kinsta/actions/kinsta-create-plain-site.php:106
+msgid "Select a region"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-add-app.php:102
+msgid "Select a server"
+msgstr ""
+
+#: src/integrations/kinsta/actions/kinsta-delete-site.php:92
+msgid "Select a site"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-add-app.php:128
+msgid "Select a stack version"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-create-app-backup.php:87 
+#: src/integrations/cloudways/actions/cloudways-remove-app.php:87
+msgid "Select An Application"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-add-app.php:119
+msgid "Select an application type"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-add-app.php:99
+msgid "Server"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-get-operation-status.php:144
+msgid "Server ID"
+msgstr ""
+
+#: src/integrations/kinsta/actions/kinsta-delete-site.php:89
+msgid "Site"
+msgstr ""
+
+#: src/integrations/kinsta/actions/kinsta-create-plain-site.php:95
+msgid "Site name"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-add-app.php:125
+msgid "Stack version"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-create-app-backup.php:67
+msgid "Start a Cloudways application backup process"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-create-app-backup.php:61
+#, php-format
+msgid "Start a Cloudways backup for {{application:%1$s}}"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-add-app.php:82
+msgid "Start adding a Cloudways application"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-add-app.php:76
+#, php-format
+msgid "Start adding a Cloudways application on {{server:%1$s}}"
+msgstr ""
+
+#: src/integrations/kinsta/actions/kinsta-create-plain-site.php:78
+msgid "Start creating a Kinsta plain site"
+msgstr ""
+
+#: src/integrations/kinsta/actions/kinsta-create-plain-site.php:71
+#, php-format
+msgid "Start creating a Kinsta plain site {{name:%1$s}} in {{region:%2$s}}"
+msgstr ""
+
+#: src/integrations/kinsta/actions/kinsta-delete-site.php:72
+msgid "Start deleting a Kinsta site"
+msgstr ""
+
+#: src/integrations/kinsta/actions/kinsta-delete-site.php:66
+#, php-format
+msgid "Start deleting the Kinsta {{site:%1$s}}"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-remove-app.php:67
+msgid "Start removing a Cloudways application"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-remove-app.php:61
+#, php-format
+msgid "Start removing Cloudways {{application:%1$s}}"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-get-operation-status.php:164
+msgid "Status"
+msgstr ""
+
+#: src/integrations/kinsta/actions/kinsta-delete-site.php:110 
+#: src/integrations/kinsta/actions/kinsta-create-plain-site.php:124 
+#: src/integrations/kinsta/actions/kinsta-get-operation-status.php:104
+msgid "Status code"
+msgstr ""
+
+#: src/integrations/kinsta/settings/kinsta-settings.php:153
+msgid "The Kinsta company ID could not be saved."
+msgstr ""
+
+#. %s: API error message.
+#: src/integrations/kinsta/settings/kinsta-settings.php:164
+#, php-format
+msgid "The provided Kinsta API key could not be validated. Error: %s"
+msgstr ""
+
+#: src/integrations/kinsta/settings/kinsta-settings.php:161
+msgid "Unable to connect to Kinsta"
+msgstr ""
+
+#: src/integrations/wp-ulike/triggers/wp-ulike-user-unlikes-post-type.php:278 
+#: src/integrations/wp-ulike/triggers/wp-ulike-user-unlikes-comment.php:246 
+#: src/integrations/wp-ulike/triggers/wp-ulike-user-likes-post-type.php:278 
+#: src/integrations/wp-ulike/triggers/wp-ulike-user-likes-comment.php:246
+msgid "User ID"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-add-app.php:270
+msgid "WooCommerce"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-add-app.php:266
+msgid "WordPress"
+msgstr ""
+
+#: src/integrations/cloudways/actions/cloudways-add-app.php:274
+msgid "Wordpress Multisite"
+msgstr ""
+
+#: src/integrations/cloudways/settings/cloudways-settings.php:136
+msgid "Your Cloudways access token has been saved."
+msgstr ""
+
+#: src/integrations/cloudways/settings/cloudways-settings.php:102
+msgid "Your Cloudways account is connected."
+msgstr ""
+
+#: src/integrations/kinsta/settings/kinsta-settings.php:110
+msgid "Your Kinsta account is connected."
+msgstr ""
+
+#: src/integrations/kinsta/settings/kinsta-settings.php:177
+msgid "Your Kinsta API key has been validated and saved."
+msgstr ""
