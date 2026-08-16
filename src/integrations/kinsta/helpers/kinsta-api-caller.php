@@ -90,11 +90,7 @@ class Kinsta_Api_Caller {
 	 */
 	public function list_available_regions() {
 
-		$company_id = $this->credentials->get_company_id();
-
-		if ( '' === $company_id ) {
-			throw new Exception( esc_html__( 'Kinsta company ID is missing.', 'automator-connect' ) );
-		}
+		$company_id = $this->get_company_id();
 
 		return $this->client->get( 'company/' . $company_id . '/available-regions' );
 	}
@@ -110,11 +106,7 @@ class Kinsta_Api_Caller {
 	 */
 	public function start_create_plain_site( array $body ) {
 
-		$company_id = $this->credentials->get_company_id();
-
-		if ( '' === $company_id ) {
-			throw new Exception( esc_html__( 'Kinsta company ID is missing.', 'automator-connect' ) );
-		}
+		$company_id = $this->get_company_id();
 
 		$body['company'] = $company_id;
 
@@ -126,7 +118,7 @@ class Kinsta_Api_Caller {
 	 *
 	 * @param string $operation_id Operation ID.
 	 *
-	 * @return array Decoded response.
+	 * @return array Decoded API response.
 	 *
 	 * @throws Exception When the request fails.
 	 */
@@ -145,7 +137,7 @@ class Kinsta_Api_Caller {
 	 * @throws Exception When the request fails.
 	 */
 	public function delete_site( $site_id ) {
-		
+
 		return $this->client->delete( self::SITES_ENDPOINT . '/' . $site_id );
 	}
 
@@ -158,12 +150,31 @@ class Kinsta_Api_Caller {
 	 */
 	public function list_sites() {
 
+		$company_id = $this->get_company_id();
+
+		return $this->client->get(
+			self::SITES_ENDPOINT,
+			array(
+				'company' => $company_id,
+			)
+		);
+	}
+
+	/**
+	 * Get the configured Kinsta company ID.
+	 *
+	 * @return string Company ID.
+	 *
+	 * @throws Exception When the company ID is missing.
+	 */
+	private function get_company_id() {
+
 		$company_id = $this->credentials->get_company_id();
 
 		if ( '' === $company_id ) {
 			throw new Exception( esc_html__( 'Kinsta company ID is missing.', 'automator-connect' ) );
 		}
-		
-		return $this->client->get( self::SITES_ENDPOINT, array( 'company' => $company_id, ) );
+
+		return $company_id;
 	}
 }
