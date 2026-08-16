@@ -2,7 +2,6 @@
 
 namespace Automator_Connect\Integrations\Cloudways;
 
-use Automator_Connect\Integrations\Cloudways\Cloudways_Api_Caller;
 use Exception;
 use Uncanny_Automator\Recipe\Action;
 
@@ -59,7 +58,7 @@ class Cloudways_Remove_App extends Action {
 
 		$this->set_sentence(
 			sprintf(
-				esc_html__( 'Start removing Cloudways application {{application:%1$s}}', 'automator-connect' ),
+				esc_html__( 'Start removing Cloudways {{application:%1$s}}', 'automator-connect' ),
 				$this->get_action_meta()
 			)
 		);

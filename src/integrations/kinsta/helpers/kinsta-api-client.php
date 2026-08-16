@@ -1,24 +1,24 @@
 <?php
 
-namespace Automator_Connect\Integrations\Cloudways;
+namespace Automator_Connect\Integrations\Kinsta;
 
 use Exception;
 
 /**
- * Class Cloudways_Api_Client
+ * Class Kinsta_Api_Client
  *
- * Handles only authentication and HTTP communication with the Cloudways API.
+ * Handles only authentication and HTTP communication with the Kinsta API.
  *
- * @package Automator_Connect\Integrations\Cloudways
+ * @package Automator_Connect\Integrations\Kinsta
  */
-class Cloudways_Api_Client {
+class Kinsta_Api_Client {
 
 	/**
-	 * Cloudways API base URL.
+	 * Kinsta API base URL.
 	 *
 	 * @var string
 	 */
-	const BASE_URL = 'https://api.cloudways.com/api/v2';
+	const BASE_URL = 'https://api.kinsta.com/v2';
 
 	/**
 	 * Default request timeout.
@@ -30,16 +30,16 @@ class Cloudways_Api_Client {
 	/**
 	 * Credentials handler.
 	 *
-	 * @var Cloudways_Api_Credentials
+	 * @var Kinsta_Api_Credentials
 	 */
 	private $credentials;
 
 	/**
 	 * Constructor.
 	 *
-	 * @param Cloudways_Api_Credentials $credentials Credentials handler.
+	 * @param Kinsta_Api_Credentials $credentials Credentials handler.
 	 */
-	public function __construct( Cloudways_Api_Credentials $credentials ) {
+	public function __construct( Kinsta_Api_Credentials $credentials ) {
 		$this->credentials = $credentials;
 	}
 
@@ -47,7 +47,6 @@ class Cloudways_Api_Client {
 	 * Perform a GET request.
 	 *
 	 * @param string $endpoint   Relative API endpoint.
-	 * @param string $path       Optional path parameter.
 	 * @param array  $query_args Optional query arguments.
 	 * @param array  $args       Optional request arguments.
 	 *
@@ -55,10 +54,9 @@ class Cloudways_Api_Client {
 	 *
 	 * @throws Exception When the request fails.
 	 */
-	public function get( $endpoint, $path = '', array $query_args = array(), array $args = array() ) {
+	public function get( $endpoint, array $query_args = array(), array $args = array() ) {
 		$args['method']     = 'GET';
 		$args['query_args'] = $query_args;
-		$args['path']       = $path;
 
 		return $this->request( $endpoint, $args );
 	}
@@ -84,10 +82,10 @@ class Cloudways_Api_Client {
 	/**
 	 * Perform a PUT request.
 	 *
-	 * @param string $endpoint       Relative API endpoint.
-	 * @param array  $body           Optional request body.
-	 * @param array  $query_args     Optional query arguments.
-	 * @param array  $args           Optional request arguments.
+	 * @param string $endpoint   Relative API endpoint.
+	 * @param array  $body       Optional request body.
+	 * @param array  $query_args Optional query arguments.
+	 * @param array  $args       Optional request arguments.
 	 *
 	 * @return array Decoded response.
 	 *
@@ -104,34 +102,32 @@ class Cloudways_Api_Client {
 	/**
 	 * Perform a DELETE request.
 	 *
-	 * @param string $endpoint       Relative API endpoint.
-	 * @param string $path           Optional path parameter.
-	 * @param array  $query_args     Optional query arguments.
-	 * @param array  $args           Optional request arguments.
+	 * @param string $endpoint   Relative API endpoint.
+	 * @param array  $query_args Optional query arguments.
+	 * @param array  $args       Optional request arguments.
 	 *
 	 * @return array Decoded response.
 	 *
 	 * @throws Exception When the request fails.
 	 */
-	public function delete( $endpoint, $path = '', array $query_args = array(), array $args = array() ) {
+	public function delete( $endpoint, array $query_args = array(), array $args = array() ) {
 		$args['method']     = 'DELETE';
 		$args['query_args'] = $query_args;
-		$args['path']       = $path;
 
 		return $this->request( $endpoint, $args );
 	}
 
 	/**
-	 * Perform a Cloudways API request.
+	 * Perform a Kinsta API request.
 	 *
-	 * All request-shaping options — method, body, query_args, path, timeout —
+	 * All request-shaping options — method, body, query_args, timeout —
 	 * are passed via the single $args array. This keeps every caller's
 	 * invocation shape identical ( $endpoint, $args ), so there's no
 	 * positional slot for an argument to be silently mismatched into.
 	 *
 	 * @param string $endpoint Relative API endpoint.
 	 * @param array  $args     Optional request arguments. Supported keys:
-	 *                         'method', 'body', 'query_args', 'path', 'timeout'.
+	 *                         'method', 'body', 'query_args', 'timeout'.
 	 *
 	 * @return array Decoded response.
 	 *
@@ -146,14 +142,13 @@ class Cloudways_Api_Client {
 			$timeout = $this->get_timeout();
 		}
 
-		$path       = isset( $args['path'] ) ? (string) $args['path'] : '';
 		$body       = isset( $args['body'] ) && is_array( $args['body'] ) ? $args['body'] : array();
 		$query_args = isset( $args['query_args'] ) && is_array( $args['query_args'] ) ? $args['query_args'] : array();
 
-		$url = $this->build_url( $endpoint, $path, $query_args );
+		$url = $this->build_url( $endpoint, $query_args );
 
-		$access_token = $this->get_access_token();
-		$headers      = $this->build_headers( $access_token );
+		$api_key = $this->get_api_key();
+		$headers = $this->build_headers( $api_key );
 
 		$request_args = $this->build_request_args(
 			$method,
@@ -168,14 +163,14 @@ class Cloudways_Api_Client {
 
 		$decoded_body = $this->decode_response_body(
 			$response_body,
-			esc_html__( 'Cloudways returned an invalid JSON response.', 'automator-connect' )
+			esc_html__( 'Kinsta returned an invalid JSON response.', 'automator-connect' )
 		);
 
 		if ( $response_code < 200 || $response_code >= 300 ) {
 			$message = $this->extract_error_message(
 				$decoded_body,
 				$response_body,
-				esc_html__( 'Cloudways API request failed.', 'automator-connect' )
+				esc_html__( 'Kinsta API request failed.', 'automator-connect' )
 			);
 
 			throw new Exception( $message, $response_code );
@@ -185,38 +180,32 @@ class Cloudways_Api_Client {
 	}
 
 	/**
-	 * Return the configured access token.
+	 * Return the configured API key.
 	 *
-	 * @return string Access token.
+	 * @return string API key.
 	 *
-	 * @throws Exception When the access token is missing.
+	 * @throws Exception When the API key is missing.
 	 */
-	private function get_access_token() {
-		$access_token = $this->credentials->get_access_token();
+	private function get_api_key() {
+		$api_key = $this->credentials->get_api_key();
 
-		if ( '' === $access_token ) {
-			throw new Exception( esc_html__( 'Cloudways access token is missing.', 'automator-connect' ) );
+		if ( '' === $api_key ) {
+			throw new Exception( esc_html__( 'Kinsta API key is missing.', 'automator-connect' ) );
 		}
 
-		return $access_token;
+		return $api_key;
 	}
 
 	/**
 	 * Build the request URL.
 	 *
 	 * @param string $endpoint   Relative endpoint.
-	 * @param string $path       Optional path parameter.
 	 * @param array  $query_args Optional query arguments.
 	 *
 	 * @return string
 	 */
-	private function build_url( $endpoint, $path = '', array $query_args = array() ) {
-		$url  = trailingslashit( $this->get_base_url() ) . $endpoint;
-		$path = trim( (string) $path );
-
-		if ( '' !== $path ) {
-			$url = trailingslashit( $url ) . $path;
-		}
+	private function build_url( $endpoint, array $query_args = array() ) {
+		$url = trailingslashit( $this->get_base_url() ) . $endpoint;
 
 		if ( ! empty( $query_args ) ) {
 			$url = add_query_arg( $query_args, $url );
@@ -228,18 +217,18 @@ class Cloudways_Api_Client {
 	/**
 	 * Build the request headers.
 	 *
-	 * @param string $access_token Access token.
+	 * @param string $api_key API key.
 	 *
 	 * @return array
 	 */
-	private function build_headers( $access_token = '' ) {
+	private function build_headers( $api_key = '' ) {
 		$headers = array(
-			'Content-Type' => 'application/x-www-form-urlencoded; charset=utf-8',
-			'Accept'      => 'application/json',
+			'Content-Type' => 'application/json',
+			'Accept'       => 'application/json',
 		);
 
-		if ( '' !== $access_token ) {
-			$headers['Authorization'] = 'Bearer ' . $access_token;
+		if ( '' !== $api_key ) {
+			$headers['Authorization'] = 'Bearer ' . $api_key;
 		}
 
 		return $headers;
@@ -254,6 +243,8 @@ class Cloudways_Api_Client {
 	 * @param array  $body    Optional request body.
 	 *
 	 * @return array
+	 *
+	 * @throws Exception When the request body cannot be encoded as JSON.
 	 */
 	private function build_request_args( $method, $timeout, array $headers, array $body = array() ) {
 		$request_args = array(
@@ -263,7 +254,13 @@ class Cloudways_Api_Client {
 		);
 
 		if ( ! empty( $body ) ) {
-			$request_args['body'] = $body;
+			$encoded_body = wp_json_encode( $body );
+
+			if ( false === $encoded_body ) {
+				throw new Exception( esc_html__( 'Kinsta request body could not be encoded as JSON.', 'automator-connect' ) );
+			}
+
+			$request_args['body'] = $encoded_body;
 		}
 
 		return $request_args;
@@ -320,7 +317,7 @@ class Cloudways_Api_Client {
 	}
 
 	/**
-	 * Extract a meaningful error message from a Cloudways response.
+	 * Extract a meaningful error message from a Kinsta response.
 	 *
 	 * @param array  $decoded_body    Decoded response body.
 	 * @param string $raw_body        Raw response body.
@@ -329,7 +326,7 @@ class Cloudways_Api_Client {
 	 * @return string
 	 */
 	private function extract_error_message( array $decoded_body, $raw_body, $default_message = '' ) {
-		foreach ( array( 'error_description', 'message', 'error' ) as $field ) {
+		foreach ( array( 'message', 'error' ) as $field ) {
 			if ( ! empty( $decoded_body[ $field ] ) && is_string( $decoded_body[ $field ] ) ) {
 				return trim( esc_html( $decoded_body[ $field ] ) );
 			}
@@ -356,30 +353,30 @@ class Cloudways_Api_Client {
 	}
 
 	/**
-	 * Get the Cloudways API base URL.
+	 * Get the Kinsta API base URL.
 	 *
 	 * @return string
 	 */
 	private function get_base_url() {
 		/**
-		 * Filter the Cloudways API base URL.
+		 * Filter the Kinsta API base URL.
 		 *
-		 * @param string $base_url Cloudways API base URL.
+		 * @param string $base_url Kinsta API base URL.
 		 */
-		return (string) apply_filters( 'ac_cloudways_api_base_url', self::BASE_URL );
+		return (string) apply_filters( 'ac_kinsta_api_base_url', self::BASE_URL );
 	}
 
 	/**
-	 * Get the Cloudways API request timeout.
+	 * Get the Kinsta API request timeout.
 	 *
 	 * @return int
 	 */
 	private function get_timeout() {
 		/**
-		 * Filter the Cloudways API request timeout.
+		 * Filters the Kinsta API request timeout.
 		 *
 		 * @param int $timeout Timeout in seconds.
 		 */
-		return (int) apply_filters( 'ac_cloudways_api_timeout', self::DEFAULT_TIMEOUT );
+		return (int) apply_filters( 'ac_kinsta_api_timeout', self::DEFAULT_TIMEOUT );
 	}
 }

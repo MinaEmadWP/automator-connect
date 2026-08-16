@@ -2,7 +2,6 @@
 
 namespace Automator_Connect\Integrations\Cloudways;
 
-use Automator_Connect\Integrations\Cloudways\Cloudways_Api_Caller;
 use Exception;
 use Uncanny_Automator\Recipe\Action;
 

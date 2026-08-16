@@ -1,61 +1,61 @@
 <?php
 
-namespace Automator_Connect\Integrations\Cloudways;
+namespace Automator_Connect\Integrations\Kinsta;
 
 use Uncanny_Automator\Integration;
 
 /**
- * Class Cloudways_Integration
+ * Class Kinsta_Integration
  *
- * Main Cloudways integration class.
+ * Main Kinsta integration class.
  */
-class Cloudways_Integration extends Integration {
+class Kinsta_Integration extends Integration {
 
 	/**
 	 * Integration code.
 	 */
-	private const INTEGRATION_CODE = 'CLOUDWAYS';
+	private const INTEGRATION_CODE = 'KINSTA';
 
 	/**
 	 * Integration name.
 	 */
-	private const INTEGRATION_NAME = 'Cloudways';
+	private const INTEGRATION_NAME = 'Kinsta';
 
 	/**
 	 * Settings URL.
 	 */
-	private const SETTINGS_URL = 'edit.php?post_type=uo-recipe&page=uncanny-automator-config&tab=premium-integrations&integration=cloudways';
+	private const SETTINGS_URL = 'edit.php?post_type=uo-recipe&page=uncanny-automator-config&tab=premium-integrations&integration=kinsta';
 
 	/**
 	 * Icon image URL.
 	 */
-	private const ICON_URL = 'img/cloudways-icon.svg';
+	private const ICON_URL = 'img/kinsta-icon.svg';
 
 	/**
-	 * Cloudways API credentials.
+	 * Kinsta API credentials.
 	 *
-	 * @var Cloudways_Api_Credentials
+	 * @var Kinsta_Api_Credentials
 	 */
 	private $credentials;
 
 	/**
-	 * Cloudways API client.
+	 * Kinsta API client.
 	 *
-	 * @var Cloudways_Api_Client
+	 * @var Kinsta_Api_Client
 	 */
 	private $client;
 
 	/**
-	 * Cloudways API caller.
+	 * Kinsta API caller.
 	 *
-	 * @var Cloudways_Api_Caller
+	 * @var Kinsta_Api_Caller
 	 */
 	private $caller;
 
 	/**
-	 * Cloudways app helpers.
+	 * Kinsta app helpers.
 	 *
-	 * @var Cloudways_App_Helpers
+	 * @var Kinsta_App_Helpers
 	 */
 	private $app_helpers;
 
@@ -91,12 +91,11 @@ class Cloudways_Integration extends Integration {
 	public function load() {
 
 		// Load settings page.
-		new Cloudways_Settings( $this->app_helpers, $this->credentials );
+		new Kinsta_Settings( $this->app_helpers, $this->caller, $this->credentials );
 		// Load actions.
-		new Cloudways_Add_App( $this->app_helpers, $this->caller );
-		new Cloudways_Remove_App( $this->app_helpers, $this->caller );
-		new Cloudways_Create_App_Backup( $this->app_helpers, $this->caller );
-		new Cloudways_Get_Operation_Status( $this->app_helpers, $this->caller );
+		new Kinsta_Create_Plain_Site( $this->app_helpers, $this->caller );
+		new Kinsta_Delete_Site( $this->app_helpers, $this->caller );
+		new Kinsta_Get_Operation_Status( $this->app_helpers, $this->caller );
 	}
 
 	/**
@@ -110,15 +109,15 @@ class Cloudways_Integration extends Integration {
 	}
 
 	/**
-	 * Build the shared Cloudways dependency graph once.
+	 * Build the shared Kinsta dependency graph once.
 	 *
 	 * @return void
 	 */
 	private function build_dependencies() {
 
-		$this->credentials = new Cloudways_Api_Credentials();
-		$this->client      = new Cloudways_Api_Client( $this->credentials );
-		$this->caller      = new Cloudways_Api_Caller( $this->client );
-		$this->app_helpers = new Cloudways_App_Helpers( $this->caller );
+		$this->credentials = new Kinsta_Api_Credentials();
+		$this->client      = new Kinsta_Api_Client( $this->credentials );
+		$this->caller      = new Kinsta_Api_Caller( $this->client, $this->credentials );
+		$this->app_helpers = new Kinsta_App_Helpers( $this->caller );
 	}
 }

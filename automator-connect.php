@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Automator Connect
  * Description:       Extends Uncanny Automator with third-party plugin and app integrations.
- * Version:           1.0.0
+ * Version:           1.1.0
  * Requires at least: 5.8
  * Requires PHP:      7.4
  * Author:            Mina Emad
@@ -25,7 +25,7 @@ if ( ! defined( 'AUTOMATOR_CONNECT_PLUGIN_VERSION' ) ) {
 	/**
 	 * Automator Connect version.
 	 */
-	define( 'AUTOMATOR_CONNECT_PLUGIN_VERSION', '1.0.0' );
+	define( 'AUTOMATOR_CONNECT_PLUGIN_VERSION', '1.1.0' );
 }
 
 if ( ! defined( 'AUTOMATOR_CONNECT_BASE_FILE' ) ) {

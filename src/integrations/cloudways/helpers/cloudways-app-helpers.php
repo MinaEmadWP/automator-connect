@@ -153,6 +153,7 @@ class Cloudways_App_Helpers {
 	* @return int Server ID, or 0 when not found.
 	*/
 	public function get_server_id_from_app_id( $app_id ) {
+		
 		$app_id = absint( $app_id );
 	
 		if ( 0 === $app_id ) {

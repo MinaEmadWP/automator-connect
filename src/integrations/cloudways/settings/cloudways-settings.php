@@ -2,14 +2,14 @@
 
 namespace Automator_Connect\Integrations\Cloudways;
 
-use Exception;
 use Uncanny_Automator\Settings\Premium_Integration_Settings;
+use Exception;
 
 /**
  * Class Cloudways_Settings
  *
  * Premium integration settings page for the third-party Cloudways integration.
- * 
+ *
  * @package Automator_Connect\Integrations\Cloudways
  */
 class Cloudways_Settings extends Premium_Integration_Settings {
@@ -28,13 +28,6 @@ class Cloudways_Settings extends Premium_Integration_Settings {
 	 * Settings page ID.
 	 */
 	private const SETTINGS_ID = 'cloudways';
-
-	/**
-	 * Cloudways API client.
-	 *
-	 * @var Cloudways_Api_Client
-	 */
-	private $client;
 
 	/**
 	 * Cloudways API credentials.
@@ -61,13 +54,11 @@ class Cloudways_Settings extends Premium_Integration_Settings {
 		$this->set_id( self::SETTINGS_ID );
 		$this->set_icon( self::INTEGRATION_CODE );
 		$this->set_name( esc_html__( self::INTEGRATION_NAME, 'automator-connect' ) );
-	
+
 		// Optionally, set the integration as a third party (default), with no credits required (default).
 		$this->set_is_third_party( true );
 		$this->set_requires_credits( false );
-
-		$this->register_option( Cloudways_Api_Credentials::EMAIL_OPTION );
-		$this->register_option( Cloudways_Api_Credentials::API_KEY_OPTION );
+		$this->register_option( Cloudways_Api_Credentials::ACCESS_TOKEN_OPTION );
 
 		add_action( 'init', array( $this, 'disconnect' ) );
 	}
@@ -75,13 +66,12 @@ class Cloudways_Settings extends Premium_Integration_Settings {
 	/**
 	 * Return the integration status.
 	 *
-	 * The settings page is considered connected only when both credentials are
-	 * stored in the database and are not empty.
+	 * The settings page is considered connected when an access token is
+	 * stored in the database and is not empty.
 	 *
 	 * @return string 'success' when connected, otherwise an empty string.
 	 */
 	public function get_status() {
-		
 		if ( $this->get_credentials()->has_credentials() ) {
 			$this->is_connected = true;
 			$this->set_status( 'success' );
@@ -127,7 +117,6 @@ class Cloudways_Settings extends Premium_Integration_Settings {
 		}
 
 		$link = wp_nonce_url( $this->get_settings_page_url() . '&disconnect=1', 'ac_cloudways_disconnect' );
-
 		$this->redirect_button(
 			esc_html__( 'Disconnect', 'automator-connect' ),
 			$link
@@ -135,36 +124,16 @@ class Cloudways_Settings extends Premium_Integration_Settings {
 	}
 
 	/**
-	 * Validate and store the settings after they are updated.
+	 * Display a success message after the access token is saved.
 	 *
 	 * @return void
 	 */
 	public function settings_updated() {
-		try {
-			$this->get_client()->authenticate();
-		} catch ( Exception $e ) {
-			$this->get_credentials()->clear_credentials();
-
-			$this->add_alert(
-				array(
-					'type'    => 'error',
-					'heading' => esc_html__( 'Unable to connect to Cloudways', 'automator-connect' ),
-					'content' => sprintf(
-						/* translators: %s: API error message. */
-						esc_html__( 'The provided Cloudways credentials could not be validated. Error: %s', 'automator-connect' ),
-						esc_html( $e->getMessage() )
-					),
-				)
-			);
-
-			return;
-		}
-
 		$this->add_alert(
 			array(
 				'type'    => 'success',
 				'heading' => esc_html__( 'Cloudways Account connected successfully', 'automator-connect' ),
-				'content' => esc_html__( 'Your Cloudways credentials have been validated and saved.', 'automator-connect' ),
+				'content' => esc_html__( 'Your Cloudways access token has been saved.', 'automator-connect' ),
 			)
 		);
 	}
@@ -188,7 +157,7 @@ class Cloudways_Settings extends Premium_Integration_Settings {
 		}
 
 		check_admin_referer( 'ac_cloudways_disconnect' ); // Die on failure/missing nonce.
-	
+
 		$this->get_credentials()->clear_credentials();
 
 		wp_safe_redirect( $this->get_settings_page_url() );
@@ -203,43 +172,12 @@ class Cloudways_Settings extends Premium_Integration_Settings {
 	private function output_connection_fields() {
 		$this->text_input(
 			array(
-				'id'       => Cloudways_Api_Credentials::EMAIL_OPTION,
-				'value'    => $this->get_credentials()->get_email(),
-				'label'    => esc_html__( 'Cloudways email', 'automator-connect' ),
+				'id'       => Cloudways_Api_Credentials::ACCESS_TOKEN_OPTION,
+				'value'    => $this->get_credentials()->get_access_token(),
+				'label'    => esc_html__( 'Cloudways access token', 'automator-connect' ),
 				'required' => true,
 			)
 		);
-
-		$this->text_input(
-			array(
-				'id'       => Cloudways_Api_Credentials::API_KEY_OPTION,
-				'value'    => $this->get_credentials()->get_api_key(),
-				'label'    => esc_html__( 'Cloudways API key', 'automator-connect' ),
-				'required' => true,
-				'class'    => 'uap-spacing-top',
-			)
-		);
-	}
-
-	/**
-	 * Get the Cloudways API client from the injected dependencies.
-	 *
-	 * @return Cloudways_Api_Client
-	 *
-	 * @throws Exception When the client dependency is missing.
-	 */
-	private function get_client() {
-		if ( $this->client instanceof Cloudways_Api_Client ) {
-			return $this->client;
-		}
-
-		if ( empty( $this->dependencies[1] ) || ! $this->dependencies[1] instanceof Cloudways_Api_Client ) {
-			throw new Exception( 'Cloudways API client dependency is missing.' );
-		}
-
-		$this->client = $this->dependencies[1];
-
-		return $this->client;
 	}
 
 	/**
@@ -254,11 +192,11 @@ class Cloudways_Settings extends Premium_Integration_Settings {
 			return $this->credentials;
 		}
 
-		if ( empty( $this->dependencies[2] ) || ! $this->dependencies[2] instanceof Cloudways_Api_Credentials ) {
+		if ( empty( $this->dependencies[1] ) || ! $this->dependencies[1] instanceof Cloudways_Api_Credentials ) {
 			throw new Exception( 'Cloudways API credentials dependency is missing.' );
 		}
 
-		$this->credentials = $this->dependencies[2];
+		$this->credentials = $this->dependencies[1];
 
 		return $this->credentials;
 	}

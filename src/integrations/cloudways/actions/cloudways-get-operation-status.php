@@ -2,7 +2,6 @@
 
 namespace Automator_Connect\Integrations\Cloudways;
 
-use Automator_Connect\Integrations\Cloudways\Cloudways_Api_Caller;
 use Exception;
 use Uncanny_Automator\Recipe\Action;
 
@@ -99,7 +98,7 @@ class Cloudways_Get_Operation_Status extends Action {
 
 		$this->set_sentence(
 			sprintf(
-				esc_html__( 'Get the status of Cloudways operation {{operation ID:%1$s}}', 'automator-connect' ),
+				esc_html__( 'Get the status of Cloudways operation {{ID:%1$s}}', 'automator-connect' ),
 				$this->get_action_meta()
 			)
 		);
@@ -124,7 +123,7 @@ class Cloudways_Get_Operation_Status extends Action {
 					'option_code' => self::OPERATION_ID,
 					'label'       => esc_html__( 'Operation ID', 'automator-connect' ),
 					'required'    => true,
-					'placeholder' => esc_html__( 'Enter the operation ID or use a token', 'automator-connect' ),
+					'placeholder' => esc_html__( 'Enter an operation ID or use a token', 'automator-connect' ),
 				)
 			),
 		);

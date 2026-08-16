@@ -1,0 +1,182 @@
+<?php
+
+namespace Automator_Connect\Integrations\Kinsta;
+
+use Exception;
+use Uncanny_Automator\Recipe\Action;
+
+/**
+ * Class Kinsta_Get_Operation_Status
+ *
+ * Get the status information of a Kinsta operation.
+ *
+ * @package Automator_Connect\Integrations\Kinsta
+ */
+class Kinsta_Get_Operation_Status extends Action {
+
+	/**
+	 * Integration code.
+	 */
+	private const INTEGRATION_CODE = 'KINSTA';
+
+	/**
+	 * Action code.
+	 */
+	private const ACTION_CODE = 'KINSTA_GET_OPERATION_STATUS';
+
+	/**
+	 * Operation ID field option code.
+	 */
+	private const OPERATION_ID = 'OPERATION_ID';
+
+	/**
+	 * Message token.
+	 */
+	private const MESSAGE_TOKEN = 'MESSAGE';
+
+	/**
+	 * Status code token.
+	 */
+	private const STATUS_CODE_TOKEN = 'STATUS_CODE';
+
+	/**
+	 * Kinsta API caller.
+	 *
+	 * @var Kinsta_Api_Caller
+	 */
+	private $caller;
+
+	/**
+	 * Set up the action.
+	 *
+	 * @return void
+	 */
+	protected function setup_action() {
+		$this->set_integration( self::INTEGRATION_CODE );
+		$this->set_action_code( self::ACTION_CODE );
+		$this->set_action_meta( self::OPERATION_ID );
+
+		$this->set_sentence(
+			sprintf(
+				esc_html__( 'Get the status of Kinsta operation {{ID:%1$s}}', 'automator-connect' ),
+				$this->get_action_meta()
+			)
+		);
+
+		$this->set_readable_sentence(
+			esc_html__( 'Get the status of a Kinsta operation', 'automator-connect' )
+		);
+
+		$this->set_background_processing( false );
+		$this->set_requires_user( false );
+	}
+
+	/**
+	 * Return the action fields.
+	 *
+	 * @return array
+	 */
+	public function options() {
+		return array(
+			Automator()->helpers->recipe->field->text(
+				array(
+					'option_code' => self::OPERATION_ID,
+					'label'       => esc_html__( 'Operation ID', 'automator-connect' ),
+					'required'    => true,
+					'placeholder' => esc_html__( 'Enter an operation ID or use a token', 'automator-connect' ),
+				)
+			),
+		);
+	}
+
+	/**
+	 * Define the tokens available to subsequent actions.
+	 *
+	 * @return array
+	 */
+	public function define_tokens() {
+		return array(
+			self::MESSAGE_TOKEN => array(
+				'name' => esc_html__( 'Message', 'automator-connect' ),
+				'type' => 'text',
+			),
+			self::STATUS_CODE_TOKEN => array(
+				'name' => esc_html__( 'Status code', 'automator-connect' ),
+				'type' => 'text',
+			),
+		);
+	}
+
+	/**
+	 * Process the action.
+	 *
+	 * @param int   $user_id     User ID.
+	 * @param array $action_data Action data.
+	 * @param int   $recipe_id   Recipe ID.
+	 * @param array $args        Action args.
+	 * @param array $parsed      Parsed values.
+	 *
+	 * @return bool
+	 *
+	 * @throws Exception When the action cannot be completed.
+	 */
+	protected function process_action( $user_id, $action_data, $recipe_id, $args, $parsed ) {
+		$action_meta = isset( $action_data['meta'] ) && is_array( $action_data['meta'] ) ? $action_data['meta'] : array();
+
+		$operation_id = sanitize_text_field(
+			(string) Automator()->parse->text(
+				$action_meta[ self::OPERATION_ID ] ?? '',
+				$recipe_id,
+				$user_id,
+				$args
+			)
+		);
+
+		if ( '' === $operation_id ) {
+			throw new Exception( esc_html__( 'Kinsta operation ID is missing.', 'automator-connect' ) );
+		}
+
+		$response = $this->get_caller()->get_operation_status( $operation_id );
+
+		if (
+			! is_array( $response ) ||
+			empty( $response['message'] ) ||
+			! isset( $response['status'] )
+		) {
+			throw new Exception( esc_html__( 'Kinsta returned an invalid response.', 'automator-connect' ) );
+		}
+
+		$message     = sanitize_text_field( (string) $response['message'] );
+		$status_code = absint( $response['status'] );
+
+		$this->hydrate_tokens(
+			array(
+				self::MESSAGE_TOKEN     => $message,
+				self::STATUS_CODE_TOKEN => $status_code,
+			)
+		);
+
+		return true;
+	}
+
+	/**
+	 * Get the Kinsta API caller.
+	 *
+	 * @return Kinsta_Api_Caller
+	 *
+	 * @throws Exception When the caller dependency is missing.
+	 */
+	private function get_caller() {
+		if ( $this->caller instanceof Kinsta_Api_Caller ) {
+			return $this->caller;
+		}
+
+		if ( empty( $this->dependencies[1] ) || ! ( $this->dependencies[1] instanceof Kinsta_Api_Caller ) ) {
+			throw new Exception( 'Kinsta API caller dependency is missing.' );
+		}
+
+		$this->caller = $this->dependencies[1];
+
+		return $this->caller;
+	}
+}
