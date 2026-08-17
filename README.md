@@ -84,7 +84,7 @@ This is an independently maintained plugin, not officially affiliated with WordP
 
 No. Automator Connect works with the free version of Uncanny Automator. That said, if you're building out advanced recipes and want to take automation to the next level, [Uncanny Automator's paid plans](https://automatorplugin.com/pricing/) unlock more advanced features and additional integrations with hundreds of triggers and actions.
 
-### How can I create my Cloudways access token?
+### How can I create my Cloudways API access token?
 
 Log in to your [Cloudways account](https://unified.cloudways.com/), open **API Integration**, and click **Create Access Token**. Give the token a name, choose its expiration period and required access scope, then create and copy the token.
 
@@ -115,7 +115,7 @@ Yes. Automator Connect is under active development, and more third-party plugin 
 Added:
 
 * WP ULike integration with four triggers for post and comment likes and unlikes.
-* Kinsta integration: connect an account, create/delete a site and check an operation status.
+* Kinsta integration: connect an account, create/delete a site, and check an operation status.
 
 Updated:
 
